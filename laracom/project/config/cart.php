@@ -64,7 +64,8 @@ return [
 
     ],
 
-    'currency' => env('DEFAULT_CURRENCY', 'USD'),
-    'currency_symbol' => env('CURRENCY_SYMBOL', '$')
+    'currency' => env('DEFAULT_CURRENCY', 'JYP'),
+    'currency_symbol' => env('CURRENCY_SYMBOL', '円'),
+    'usd_to_jpy_rate' => env('USD_TO_JPY_RATE', 140),
 
 ];
