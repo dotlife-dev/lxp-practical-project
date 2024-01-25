@@ -34,9 +34,11 @@
             <h1>{{ $product->name }}</h1>
             <div class="product-total-price">
                 <p>
-                    <span class="product-price">{{ $product->price * config('cart.usd_to_jpy_rate') }}{{ config('cart.currency_symbol') }}</span>
-                    +
-                    <span class="shipping-fee">送料980{{ config('cart.currency_symbol') }}</span>
+                    <b>
+                        <span class="product-price" style="color:#bf0000;font-size: 24px;">{{ $product->price * config('cart.usd_to_jpy_rate') }}{{ config('cart.currency_symbol') }}</span>
+                        +
+                        <span class="shipping-fee">送料980{{ config('cart.currency_symbol') }}</span>
+                    </b>
                 </p>
             </div>
             <div class="SKU">
@@ -76,7 +78,7 @@
                                 placeholder="数量" value="{{ old('quantity') }}" />
                             <input type="hidden" name="product" value="{{ $product->id }}" />
                         </div>
-                        <button type="submit" class="btn btn-warning"><i class="fa fa-cart-plus"></i>かごに追加</button>
+                        <button type="submit" class="btn btn-warning" style="width: 227px"><i class="fa fa-cart-plus"></i>かごに追加</button>
                     </form>
                 </div>
             </div>
