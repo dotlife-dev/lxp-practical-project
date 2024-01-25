@@ -73,12 +73,12 @@
                             <hr>
                         @endif
                         <p>数量</p>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="quantity" id="quantity"
-                                placeholder="数量" value="{{ old('quantity') }}" />
-                            <input type="hidden" name="product" value="{{ $product->id }}" />
-                        </div>
-                        <button type="submit" class="btn btn-warning" style="width: 227px"><i class="fa fa-cart-plus"></i>かごに追加</button>
+                            <div class="form-group" style="display: flex;width: 464px;">
+                                <input type="text" class="form-control" name="quantity" id="quantity" style="margin-right: 1rem;width: 50%;"
+                                    placeholder="数量" value="{{ old('quantity') }}" />
+                                <input type="hidden" name="product" value="{{ $product->id }}" />
+                                <button type="submit" class="btn btn-warning" style="width: 50%;"><i class="fa fa-cart-plus"></i>かごに追加</button>
+                            </div>
                     </form>
                 </div>
             </div>
