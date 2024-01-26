@@ -3,9 +3,9 @@
 @section('content')
     <!-- Main content -->
     <section class="content">
-    @include('layouts.errors-and-messages')
-    <!-- Default box -->
-        @if($addresses)
+        @include('layouts.errors-and-messages')
+        <!-- Default box -->
+        @if ($addresses)
             <div class="box">
                 <div class="box-body">
                     <h2>Addresses</h2>
@@ -24,30 +24,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($addresses as $address)
-                            <tr>
-                                <td><a href="{{ route('admin.customers.show', [$address->id]) }}">{{ $address->alias }}</a></td>
-                                <td>{{ $address->address_1 }}</td>
-                                <td>{{ $address->country }}</td>
-                                <td>{{ $address->province }}</td>
-                                <td>{{ $address->city }}</td>
-                                <td>{{ $address->zip }}</td>
-                                <td>@include('layouts.status', ['status' => $address->status])</td>
-                                <td>
-                                    <form action="{{ route('admin.addresses.destroy', $address->id) }}" method="post" class="form-horizontal">
-                                        {{ csrf_field() }}
-                                        <input type="hidden" name="_method" value="delete">
-                                        <div class="btn-group">
-                                            <a href="{{ route('admin.addresses.edit', $address->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                            <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Delete</button>
-                                        </div>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                            @foreach ($addresses as $address)
+                                <tr>
+                                    <td><a
+                                            href="{{ route('admin.addresses.show', $address->id) }}">{{ $address->alias }}</a>
+                                    </td>
+                                    <td>{{ $address->address_1 }}</td>
+                                    <td>{{ $address->country }}</td>
+                                    <td>{{ $address->province }}</td>
+                                    <td>{{ $address->city }}</td>
+                                    <td>{{ $address->zip }}</td>
+                                    <td>@include('layouts.status', ['status' => $address->status])</td>
+                                    <td>
+                                        <form action="{{ route('admin.addresses.destroy', $address->id) }}" method="post"
+                                            class="form-horizontal">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="_method" value="delete">
+                                            <div class="btn-group">
+                                                <a href="{{ route('admin.addresses.edit', $address->id) }}"
+                                                    class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                <button onclick="return confirm('Are you sure?')" type="submit"
+                                                    class="btn btn-danger btn-sm"><i class="fa fa-times"></i>
+                                                    Delete</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                    @if($addresses instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator)
+                    @if ($addresses instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator)
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="pull-left">{{ $addresses->links() }}</div>
@@ -60,7 +66,9 @@
             <!-- /.box -->
         @else
             <div class="box">
-                <div class="box-body"><p class="alert alert-warning">No addresses found.</p></div>
+                <div class="box-body">
+                    <p class="alert alert-warning">No addresses found.</p>
+                </div>
             </div>
         @endif
     </section>
