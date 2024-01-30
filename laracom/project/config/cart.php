@@ -66,5 +66,4 @@ return [
 
     'currency' => env('DEFAULT_CURRENCY', 'JPY'),
     'currency_symbol' => env('CURRENCY_SYMBOL', '円'),
-
 ];
