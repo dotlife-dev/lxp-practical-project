@@ -684,7 +684,7 @@ textarea, select {
     .btn {
         width: 100%;
     }
-    .input {
+    .form-control {
         margin-bottom: 1rem;
         }
     .footer {
