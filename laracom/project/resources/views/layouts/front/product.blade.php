@@ -72,14 +72,67 @@
                             </div>
                             <hr>
                         @endif
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                         <p>数量</p>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="quantity" id="quantity
+                                <input type="text" class="form-control" name="quantity" id="quantity"
                                     placeholder="数量" value="{{ old('quantity') }}" />
                                 <input type="hidden" name="product" value="{{ $product->id }}" />
                                 <button type="submit" class="btn btn-warning"><i class="fa fa-cart-plus"></i>かごに追加</button>
                             </div>
                     </form>
+                    <div class="product-reviews">
+                    @if(isset($reviews))
+                        @forelse($reviews as $review)
+                        <div class="single-review">
+                            <div class="star-rating">
+                                @for($i = 0; $i < 5; $i++)
+                                    @if($i < $review->evaluation)
+                                        <i class="fa fa-star"></i> <!-- 評価分の星 -->
+                                    @else
+                                        <i class="fa fa-star-o"></i> <!-- 残りの空の星 -->
+                                    @endif
+                                @endfor
+                            </div>
+                            <p>{{ $review->comment }}</p>
+                        </div>
+                        @empty
+                        <p>この商品にはまだレビューがありません。</p>
+                        @endforelse
+                    @endif
+                    </div>
+                    @if(auth()->check())
+                    <form class="review-form" action="{{ route('front.review.store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                        <input type="hidden" name="slug" value="{{ $product->slug }}" />
+                        <div class="review-group">
+                            <div class="evaluation-group">
+                                <label for="evaluation">評価</label>
+                                <select name="evaluation" id="evaluation" class="review-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="comment-group">
+                                <label for="comment">コメント</label>
+                                <input name="comment" id="comment" class="review-control" maxlength="100" placeholder="コメントを入力してください"></input>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-review" id="submit-button">登録</button>
+                    </form>
+                    @endif
                 </div>
             </div>
         </div>
@@ -98,3 +151,26 @@
         });
     </script>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const evaluation = document.getElementById('evaluation');
+    const comment = document.getElementById('comment');
+    const submitButton = document.getElementById('submit-button');
+
+    function updateSubmitButtonState() {
+        // コメントが空でない場合にボタンを有効化
+        // 評価がデフォルト値以外であることは既に保証されているため、コメントのみをチェック
+        submitButton.disabled = !comment.value.trim();
+    }
+
+    // コメントの入力状態が変わったときにボタンの状態を更新
+    comment.addEventListener('input', updateSubmitButtonState);
+
+    // 評価の変更を監視する必要がなくなった場合、この行は削除しても構いません
+    // evaluation.addEventListener('change', updateSubmitButtonState);
+
+    // ページ読み込み時にもボタンの状態を更新
+    updateSubmitButtonState();
+});
+</script>
