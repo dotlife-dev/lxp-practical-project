@@ -12,6 +12,6 @@ import com.digitalojt.web.entity.StockInfo;
  * 
  */
 @Repository
-public interface StockInfoRepository extends JpaRepository<StockInfo, String>  {
+public interface StockInfoRepository extends JpaRepository<StockInfo, String> {
     
 }
