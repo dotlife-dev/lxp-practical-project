@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  app:
+    image: eclipse-temurin:17
+    container_name: drone-inventory-system
+    ports:
+      - 8080:8080
+    volumes:
+      - ./workspace:/workspace
+    working_dir: /workspace
+    tty: true
+
+  db:
+    build: ./db/mysql
+    container_name: stock_mng
+    volumes:
+      - db-store:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  db-store:
