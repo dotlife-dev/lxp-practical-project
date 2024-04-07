@@ -1,7 +1,7 @@
 version: "3.6"
 services:
   java:
-    image: openjdk:17-oracle
+    image: openjdk:11-oracle
     container_name: digitalojt-drone
     tty: true
     working_dir: /app
