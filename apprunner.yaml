@@ -1,0 +1,11 @@
+version: 1.0
+runtime: Corretto11
+build:
+ commands:
+  build:
+  - ./gradlew bootJar
+  - cp build/libs/dev-0.0.1.jar ./
+run:
+ command: java -jar ./dev-0.0.1.jar
+ network:
+   port: 8080
