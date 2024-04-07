@@ -1,0 +1,20 @@
+## 開発環境
+
+- Java 17
+- Spring 3.2.2
+
+
+Docker 起動
+
+```
+$ docker-compose up -d
+$ docker exec -it drone-inventory-system /bin/bash
+```
+
+アプリを起動
+
+
+```
+$ ./gradlew build
+$ ./gradlew bootRun
+```
