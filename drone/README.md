@@ -48,5 +48,3 @@ $ java -jar ./dev-0.0.1.jar
 ```
 
 ![AppRunner](https://i.gyazo.com/da1bd2486260b918fa108519194c376d.pngg "AppRunner")
-
-https://zenn.dev/thirosue/books/b3fa0e1150f110/viewer/46a040 も参考にしてください。
