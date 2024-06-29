@@ -4,17 +4,22 @@
 - Spring 3.2.2
 
 
-Docker 起動
-
+## コンテナを一括で作成・起動するコマンド
 ```
 $ docker-compose up -d
+```
+
+## 指定したコンテナの中でプロセスを実行するコマンド
+```
 $ docker exec -it drone-inventory-system /bin/bash
 ```
 
-アプリを起動
-
-
+## Dockerイメージを構築するコマンド
 ```
 $ ./gradlew build
+```
+
+## Dockerイメージを起動するコマンド
+```
 $ ./gradlew bootRun
 ```
